@@ -501,6 +501,12 @@ _EOF_
 
 }
 
+function DownloadConfig {
+	wget "https://raw.githubusercontent.com/shyboylpf/ocserv-auto/master/config/ocserv.conf"
+	cp ocserv.conf /etc/ocserv/
+	mkdir /etc/ocserv/ssl/
+}
+
 function ConfigFirewall {
 
     firewalldisactive=$(systemctl is-active firewalld.service)
@@ -603,6 +609,7 @@ ConfigEnvironmentVariable $@
 PrintEnvironmentVariable
 InstallOcserv
 ConfigOcserv
+DownloadConfig
 ConfigFirewall
 #Install-http-parser
 ConfigSystem
